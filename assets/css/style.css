@@ -167,6 +167,7 @@ a:hover { text-decoration: underline; }
 
 /* ---------- Badges de statut ---------- */
 .status {
+  max-width: 100%;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -247,6 +248,8 @@ a:hover { text-decoration: underline; }
 }
 
 .hero .links a {
+  max-width: 100%;
+  overflow-wrap: anywhere;
   color: var(--text-muted);
   display: inline-flex;
   align-items: center;
@@ -398,12 +401,13 @@ main section[id] { scroll-margin-top: 76px; }
 /* ---------- Cartes projets ---------- */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
   gap: 22px;
 }
 
 .project-card {
   position: relative;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   background: var(--bg-panel);
@@ -487,11 +491,12 @@ main section[id] { scroll-margin-top: 76px; }
 /* ---------- Compétences ---------- */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
   gap: 22px;
 }
 
 .skill-group {
+  min-width: 0;
   background: var(--bg-panel);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -688,6 +693,8 @@ main section[id] { scroll-margin-top: 76px; }
 
 /* Figure / schéma */
 .figure {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--bg-panel);
@@ -912,4 +919,52 @@ main section[id] { scroll-margin-top: 76px; }
 
   .contact-box .btn + .btn { margin-left: 0; }
   .contact-box .btn { margin: 6px 0; }
+}
+
+/* ---------- Responsive : tablettes et petits téléphones ---------- */
+@media (max-width: 1024px) and (min-width: 901px) {
+  /* Tablette paysage : hero légèrement resserré */
+  .hero { padding: 60px 0 52px; }
+  .hero-grid { gap: 36px; }
+}
+
+@media (max-width: 640px) {
+  /* Schémas d'architecture : garder un texte lisible, défilement horizontal */
+  .figure svg { min-width: 620px; }
+
+  /* Terminal plus compact sur téléphone */
+  .terminal-body { padding: 16px; font-size: 12.5px; min-height: 0; }
+
+  /* Hero : resserre */
+  .hero { padding: 52px 0 44px; }
+  .hero h1 { font-size: clamp(28px, 8.5vw, 36px); }
+
+  /* Boutons pleine largeur au pouce */
+  .hero .actions .btn { flex: 1 1 auto; justify-content: center; }
+
+  /* Contact : boutons empilés pleine largeur */
+  .contact-box .btn { display: flex; width: 100%; justify-content: center; }
+
+  /* Meta projet : retour à la ligne propre */
+  .project-meta { gap: 12px 18px; }
+}
+
+@media (max-width: 380px) {
+  .container { padding: 0 18px; }
+  .brand .name { font-size: 14px; }
+  .cert-item { padding: 14px 16px; gap: 12px; }
+  .cert-item .cert-icon { width: 40px; height: 40px; }
+}
+
+
+@media (max-width: 400px) {
+  .projects-grid, .skills-grid { grid-template-columns: 1fr; }
+  .project-card p, .skill-group li { overflow-wrap: anywhere; }
+}
+
+/* Impression : retirer fond sombre pour un rendu papier propre */
+@media print {
+  body { background: #fff; }
+  body::before { display: none; }
+  .site-header, .site-footer, .terminal, .project-nav, .btn { display: none !important; }
 }
