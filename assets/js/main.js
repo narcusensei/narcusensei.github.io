@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  // Année courante dans le footer
-  document.querySelectorAll(".year").forEach((el) => {
+  // Année courante dans le footer uniquement (pas les badges certifications .year)
+  document.querySelectorAll(".site-footer .year").forEach((el) => {
     el.textContent = new Date().getFullYear();
   });
 
