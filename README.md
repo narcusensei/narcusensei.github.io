@@ -76,7 +76,7 @@ Jamais déployé ? Sur GitHub : dépôt → *Settings* → *Pages* → Source : 
 ## To-do contenu (placeholders restants)
 
 - [ ] Capture du lab vSphere → `assets/img/capture-vsphere.png`
-- [ ] Capture du VPS (`systemctl status` + `ufw status`) → `assets/img/capture-vps.png`
+- [x] Capture du VPS (`systemctl status` + `ufw status`) → `assets/img/capture-vps.png` ✓ intégrée
 - [ ] Capture topologie Packet Tracer → `assets/img/capture-packet-tracer.png`
 - [ ] Capture profil TryHackMe (rang, badges) → `assets/img/capture-tryhackme.png`
 - [ ] Créer le dépôt GitHub des scripts et remplacer le bloc `shot` de `scripts.html`

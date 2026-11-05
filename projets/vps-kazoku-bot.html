@@ -138,10 +138,10 @@
           <figcaption>Le VPS n'expose que le strict nécessaire : le bot sort en HTTPS vers l'API Discord, l'administration passe par SSH avec authentification par clés.</figcaption>
         </figure>
 
-        <div class="shot">
-          <strong>Capture d'écran à ajouter</strong>
-          Terminal avec <code>systemctl status kazoku-bot</code> + <code>ufw status</code> — fichier à déposer dans <code>assets/img/capture-vps.png</code>
-        </div>
+        <figure class="figure">
+          <img src="../assets/img/capture-vps.png" alt="Terminal SSH sur le VPS : service k4zkbot actif en exécution et pare-feu ufw n'autorisant que SSH en entrée" loading="lazy">
+          <figcaption>En production : le service <code>k4zkbot</code> tourne en continu sous systemd, et le pare-feu n'expose que SSH en entrée — tout le reste est bloqué par défaut.</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -154,7 +154,7 @@
           <li><strong>Durcissement SSH</strong> : authentification par clés uniquement (mots de passe désactivés), connexion root interdite.</li>
           <li><strong>Pare-feu</strong> : politique par défaut de refus, seuls les flux nécessaires sont autorisés.</li>
           <li><strong>Développement du bot</strong> : Python — commandes d'administration du serveur, surveillance et journalisation des événements.</li>
-          <li><strong>Mise en production</strong> : exécution comme service Linux avec redémarrage automatique, indépendant de ma session.</li>
+          <li><strong>Mise en production</strong> : exécution comme service systemd (<code>k4zkbot</code>) avec redémarrage automatique, indépendant de ma session.</li>
           <li><strong>Maintenance continue</strong> : application des correctifs système, vérification des journaux et supervision de l'état du service.</li>
         </ul>
         <div class="code-block">

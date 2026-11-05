@@ -96,7 +96,7 @@ Import-Csv -Path "utilisateurs.csv" -Delimiter ";" | ForEach-Object {
 <span class="cmt"># maintenance.sh — mise à jour + rapport d'état du VPS</span>
 <span class="cmd">$</span> sudo apt update && sudo apt upgrade -y
 <span class="cmd">$</span> sudo apt autoremove -y
-<span class="cmd">$</span> systemctl is-active kazoku-bot <span class="cmt"># le bot tourne-t-il ?</span>
+<span class="cmd">$</span> systemctl is-active k4zkbot <span class="cmt"># le bot tourne-t-il ?</span>
 <span class="cmd">$</span> df -h /  <span class="cmt"># espace disque restant</span>
         </div>
 
