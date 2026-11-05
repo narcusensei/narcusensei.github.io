@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TryHackMe — Détection d'incidents &amp; write-ups — Lénaïc Dissaké</title>
+  <meta name="description" content="Entraînement continu à la cybersécurité sur TryHackMe : analyse réseau, énumération, élévation de privilèges et write-ups détaillés.">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">
+        <span class="monogram">LD</span>
+        <span class="name">Lénaïc Dissaké</span>
+      </a>
+      <nav class="main-nav" id="main-nav">
+        <a href="../index.html#projets">Projets</a>
+        <a href="../index.html#a-propos">À propos</a>
+        <a href="../index.html#competences">Compétences</a>
+        <a href="../index.html#certifications">Certifications</a>
+        <a href="../index.html#contact" class="nav-cta">Me contacter</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== Hero projet ===== -->
+    <section class="project-hero">
+      <div class="container">
+        <a class="breadcrumb" href="../index.html#projets">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Tous les projets
+        </a>
+        <div class="badges"><span class="badge">Entraînement continu · Cybersécurité</span><span class="status"><span class="pip"></span> EN CONTINU</span></div>
+        <h1>TryHackMe : comprendre les attaques pour mieux les détecter</h1>
+        <p class="lead">Entraînement régulier sur des machines et scénarios réels : analyse réseau, énumération, élévation de privilèges et détection d'incidents. Chaque room est l'occasion de documenter une démarche reproductible.</p>
+        <div class="project-meta">
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+            <a href="https://tryhackme.com/p/narcus" target="_blank" rel="noopener">Profil TryHackMe — narcus</a>
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Pratique régulière
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Démarche ===== -->
+    <section class="project-section">
+      <div class="container">
+        <h2><span class="num">01</span>Pourquoi je m'entraîne</h2>
+        <p>On ne protège bien que ce qu'on sait attaquer. La pratique offensive — même à petit niveau — apprend à raisonner comme un assaillant : quels services exposés, quelles configurations faibles, quels chemins d'élévation.</p>
+        <p>Cette logique alimente directement la défense : repérer une anomalie dans des journaux, comprendre ce qu'elle révèle et réagir vite. C'est la compétence que je développe en parallèle de l'administration systèmes &amp; réseaux.</p>
+        <div class="shot" style="margin-top:22px;">
+          <strong>Badge / statistiques TryHackMe à ajouter</strong>
+          Capture de votre profil (rang, niveau, badges) — fichier à déposer dans <code>assets/img/capture-tryhackme.png</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Write-ups ===== -->
+    <section class="project-section alt">
+      <div class="container">
+        <h2><span class="num">02</span>Write-ups</h2>
+        <p>Chaque write-up suit la même structure : objectif, reconnaissance, exploitation, résultat et leçon retenue. Voici le format — les vrais write-ups arrivent ci-dessous au fil de mes sessions.</p>
+
+        <!-- Exemple de format -->
+        <article class="writeup" style="margin-top:26px;">
+          <div class="wu-head">
+            <h3>Exemple de format — «&nbsp;Nom de la room&nbsp;»</h3>
+            <span class="lvl lvl-medium">Difficulté : à renseigner</span>
+            <span class="lvl lvl-easy" style="background:#eff6ff;color:#1d4ed8;">Gabarit</span>
+          </div>
+          <div class="wu-body">
+            <h4>Objectif</h4>
+            <p>Une phrase : ce que la machine demande de trouver (flag, credential, accès root).</p>
+            <h4>Reconnaissance</h4>
+            <p>Balayage des ports et services (<code>nmap -sV</code>), identification des versions exposées, repérage des vecteurs possibles.</p>
+            <div class="code-block">
+<span class="cmd">$</span> nmap -sV -sC -oN scan.txt 10.10.10.10
+<span class="cmt"># → 22/tcp ssh, 80/tcp http (Apache 2.4.41) : angle d'attaque = web</span>
+            </div>
+            <h4>Exploitation</h4>
+            <p>Description de la faille utilisée et des étapes pour l'exploiter — avec les commandes et ce qu'elles renvoient.</p>
+            <h4>Résultat</h4>
+            <p>Le flag obtenu et par quel chemin.</p>
+            <div class="flag">THM{exemple_de_flag}</div>
+            <h4>Leçon retenue</h4>
+            <p>La faille vient d'une mauvaise configuration de X. En production, je saurai : mettre à jour / restreindre / surveiller ce service.</p>
+          </div>
+        </article>
+
+        <!-- Emplacements write-ups réels -->
+        <article class="writeup">
+          <div class="wu-head">
+            <h3>Write-up n°1 — à rédiger</h3>
+            <span class="lvl lvl-easy">Emplacement réservé</span>
+          </div>
+          <div class="wu-body">
+            <p>Dupliquer le gabarit ci-dessus avec une vraie room : objectifs, commandes réellement utilisées, résultat et leçon. Choisir de préférence une room en lien avec la détection d'incidents ou l'administration (Linux Privesc, Wireshark, Blue…).</p>
+          </div>
+        </article>
+
+        <article class="writeup">
+          <div class="wu-head">
+            <h3>Write-up n°2 — à rédiger</h3>
+            <span class="lvl lvl-easy">Emplacement réservé</span>
+          </div>
+          <div class="wu-body">
+            <p>Emplacement réservé pour un second write-up.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Bonnes pratiques ===== -->
+    <section class="project-section">
+      <div class="container">
+        <h2><span class="num">03</span>Ce qu'un bon write-up démontre</h2>
+        <ul>
+          <li><strong>Une démarche</strong>, pas un copier-coller : pourquoi cette hypothèse, pourquoi cet outil.</li>
+          <li><strong>Des commandes expliquées</strong> : ce que chaque option fait, ce que le résultat révèle.</li>
+          <li><strong>Une leçon défensive</strong> : la contre-mesure qui aurait bloqué l'attaque.</li>
+          <li><strong>De la rigueur</strong> : un write-up, c'est aussi de la documentation — compétence clé d'un administrateur.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== Compétences ===== -->
+    <section class="project-section alt">
+      <div class="container">
+        <h2><span class="num">04</span>Compétences mobilisées</h2>
+        <div class="tags">
+          <span>Linux</span><span>Nmap</span><span>Wireshark</span><span>Analyse de vulnérabilités</span><span>Élévation de privilèges</span><span>Détection d'incidents</span><span>Documentation</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Navigation projet ===== -->
+    <div class="container">
+      <nav class="project-nav">
+        <a href="reseau-packet-tracer.html">
+          <span class="dir">← Projet précédent</span>
+          <div class="title">Maquettes réseau Packet Tracer</div>
+        </a>
+        <a class="next" href="../index.html#contact">
+          <span class="dir">Fin →</span>
+          <div class="title">Me contacter</div>
+        </a>
+      </nav>
+    </div>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <span class="prompt"><span class="u">lenaic</span>@<span class="p">portfolio</span>:~$ echo "© <span class="year">2026</span> Lénaïc Dissaké"</span>
+      <nav class="f-links">
+        <a href="https://github.com/narcusensei" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/lenaic-d" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://tryhackme.com/p/narcus" target="_blank" rel="noopener">TryHackMe</a>
+        <a href="../cv/CV-Lenaic-Dissake.pdf">CV</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

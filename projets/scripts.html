@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scripts d'automatisation — Lénaïc Dissaké</title>
+  <meta name="description" content="Scripts Python, PowerShell et Bash pour automatiser les tâches d'administration systèmes : gestion d'utilisateurs, contrôles de santé, sauvegardes et maintenance.">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">
+        <span class="monogram">LD</span>
+        <span class="name">Lénaïc Dissaké</span>
+      </a>
+      <nav class="main-nav" id="main-nav">
+        <a href="../index.html#projets">Projets</a>
+        <a href="../index.html#a-propos">À propos</a>
+        <a href="../index.html#competences">Compétences</a>
+        <a href="../index.html#certifications">Certifications</a>
+        <a href="../index.html#contact" class="nav-cta">Me contacter</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== Hero projet ===== -->
+    <section class="project-hero">
+      <div class="container">
+        <a class="breadcrumb" href="../index.html#projets">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Tous les projets
+        </a>
+        <div class="badges"><span class="badge">Scripts — Python · PowerShell · Bash</span><span class="status cyan"><span class="pip"></span> EN ÉVOLUTION CONTINUE</span></div>
+        <h1>Automatiser les tâches répétitives pour se concentrer sur l'essentiel</h1>
+        <p class="lead">Une collection de scripts d'administration et de maintenance écrits pour mes labs et mes projets : créer, contrôler, sauvegarder et surveiller — de façon fiable et reproductible.</p>
+        <div class="project-meta">
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            Python
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+            PowerShell
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Bash
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Démarche ===== -->
+    <section class="project-section">
+      <div class="container">
+        <h2><span class="num">01</span>Démarche</h2>
+        <p>Chaque tâche faite plus de deux fois mérite un script. Administrer des VM, des comptes ou des services à la main, c'est perdre du temps et surtout introduire des écarts entre les environnements.</p>
+        <p>Mes scripts suivent trois règles : un objectif unique et clair, un mode de fonctionnement à sec (<em>dry-run</em>) quand l'action est sensible, et une sortie lisible qui dit exactement ce qui a été fait.</p>
+      </div>
+    </section>
+
+    <!-- ===== Exemples ===== -->
+    <section class="project-section alt">
+      <div class="container">
+        <h2><span class="num">02</span>Exemples de réalisations</h2>
+
+        <h3 style="margin-top:26px;font-size:17px;">Gestion d'utilisateurs Active Directory — PowerShell</h3>
+        <p>Création de comptes en masse depuis un fichier CSV : uniformité des attributs, mot de passe temporaire, premier changement de mot de passe forcé.</p>
+        <div class="code-block">
+<span class="cmt"># Import d'utilisateurs depuis un CSV (Nom;Prenom;Service)</span>
+Import-Csv -Path "utilisateurs.csv" -Delimiter ";" | ForEach-Object {
+    $login = ($_.Prenom.Substring(0,1) + $_.Nom).ToLower()
+    New-ADUser -Name $login -GivenName $_.Prenom -Surname $_.Nom `
+        -Path "OU=$($_.Service),DC=lab,DC=local" `
+        -AccountPassword (Read-Host -AsSecureString "mdp $login") `
+        -ChangePasswordAtLogon $true -Enabled $true
+    Write-Host "✔ $login créé ($($_.Service))" -ForegroundColor Green
+}
+        </div>
+
+        <h3 style="margin-top:34px;font-size:17px;">Maintenance du VPS — Bash</h3>
+        <p>Mise à jour, nettoyage et état du service bot, avec résumé en fin d'exécution — exécuté régulièrement pour garder le serveur propre.</p>
+        <div class="code-block">
+<span class="cmt">#!/usr/bin/env bash</span>
+<span class="cmt"># maintenance.sh — mise à jour + rapport d'état du VPS</span>
+<span class="cmd">$</span> sudo apt update && sudo apt upgrade -y
+<span class="cmd">$</span> sudo apt autoremove -y
+<span class="cmd">$</span> systemctl is-active kazoku-bot <span class="cmt"># le bot tourne-t-il ?</span>
+<span class="cmd">$</span> df -h /  <span class="cmt"># espace disque restant</span>
+        </div>
+
+        <h3 style="margin-top:34px;font-size:17px;">Contrôle de santé — Python</h3>
+        <p>Vérification périodique de services et endpoints : ping HTTP, expiration de certificats, occupation disque — et alerte en cas d'anomalie (log dédié).</p>
+        <div class="code-block">
+<span class="cmt"># check_services.py — supervision légère multi-cibles</span>
+cibles = {"API Discord": "https://discord.com",
+          "Bot local":  "http://127.0.0.1:8080/health"}
+
+for nom, url in cibles.items():
+    try:
+        code = httpx.get(url, timeout=5).status_code
+        etat = "OK" if code == 200 else f"ALERTE ({code})"
+    except httpx.ConnectError:
+        etat = "INDISPONIBLE"
+    print(f"[{etat:^15}] {nom}")
+        </div>
+
+        <div class="shot">
+          <strong>Dépôt GitHub à créer</strong>
+          Publiez vos scripts dans un dépôt public <code>github.com/narcusensei/scripts-admin</code> puis remplacez ce bloc par un lien vers le dépôt.
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Compétences ===== -->
+    <section class="project-section">
+      <div class="container">
+        <h2><span class="num">03</span>Compétences mobilisées</h2>
+        <div class="tags">
+          <span>Python</span><span>PowerShell</span><span>Bash</span><span>Active Directory (module AD)</span><span>Automatisation</span><span>Planification de tâches</span><span>Documentation</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Navigation projet ===== -->
+    <div class="container">
+      <nav class="project-nav">
+        <a href="vps-kazoku-bot.html">
+          <span class="dir">← Projet précédent</span>
+          <div class="title">VPS Linux durci + KAZOKU-BOT</div>
+        </a>
+        <a class="next" href="reseau-packet-tracer.html">
+          <span class="dir">Projet suivant →</span>
+          <div class="title">Maquettes réseau Packet Tracer</div>
+        </a>
+      </nav>
+    </div>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <span class="prompt"><span class="u">lenaic</span>@<span class="p">portfolio</span>:~$ echo "© <span class="year">2026</span> Lénaïc Dissaké"</span>
+      <nav class="f-links">
+        <a href="https://github.com/narcusensei" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/lenaic-d" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://tryhackme.com/p/narcus" target="_blank" rel="noopener">TryHackMe</a>
+        <a href="../cv/CV-Lenaic-Dissake.pdf">CV</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab vSphere &amp; Active Directory — Lénaïc Dissaké</title>
+  <meta name="description" content="Déploiement et administration d'un hyperviseur vSphere hébergeant 9 VM avec annuaire Active Directory : politiques de mots de passe, moindre privilège, verrouillage des comptes et MFA.">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">
+        <span class="monogram">LD</span>
+        <span class="name">Lénaïc Dissaké</span>
+      </a>
+      <nav class="main-nav" id="main-nav">
+        <a href="../index.html#projets">Projets</a>
+        <a href="../index.html#a-propos">À propos</a>
+        <a href="../index.html#competences">Compétences</a>
+        <a href="../index.html#certifications">Certifications</a>
+        <a href="../index.html#contact" class="nav-cta">Me contacter</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== Hero projet ===== -->
+    <section class="project-hero">
+      <div class="container">
+        <a class="breadcrumb" href="../index.html#projets">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Tous les projets
+        </a>
+        <div class="badges"><span class="badge">Projet de formation · Bachelor Cybersécurité</span><span class="status cyan"><span class="pip"></span> LAB ACTIF</span></div>
+        <h1>Lab vSphere &amp; Active Directory : 9 machines, 9 annuaires</h1>
+        <p class="lead">Déploiement et administration d'un hyperviseur vSphere, avec pour chaque machine virtuelle son propre annuaire Active Directory sécurisé : politiques de mots de passe, moindre privilège et verrouillage des comptes.</p>
+        <div class="project-meta">
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+            Hyperviseur vSphere (ESXi)
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Windows Server · Active Directory
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            GPO · Moindre privilège · MFA
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contexte ===== -->
+    <section class="project-section">
+      <div class="container">
+        <h2><span class="num">01</span>Contexte</h2>
+        <p>Dans le cadre du Bachelor Spécialiste Cybersécurité (CSB School), l'objectif était de reproduire une infrastructure d'entreprise complète en environnement contrôlé : un hyperviseur qui héberge plusieurs domaines Active Directory indépendants, administrés et sécurisés comme en production.</p>
+        <p>Ce lab permet d'expérimenter sans risque les gestes d'administration courants — déploiement, gestion des identités, application de stratégies de groupe — et de comprendre concrètement les mécanismes de sécurité d'un annuaire d'entreprise.</p>
+      </div>
+    </section>
+
+    <!-- ===== Architecture ===== -->
+    <section class="project-section alt">
+      <div class="container">
+        <h2><span class="num">02</span>Architecture</h2>
+        <p>Un hôte physique exécute l'hyperviseur vSphere (ESXi). Chaque machine virtuelle héberge son propre annuaire Active Directory avec son contrôleur de domaine, isolé des autres : idéal pour tester des stratégies différentes en parallèle et comparer leurs effets.</p>
+
+        <figure class="figure">
+          <svg viewBox="0 0 920 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma d'architecture : hôte ESXi hébergeant 9 machines virtuelles, chacune avec son contrôleur de domaine Active Directory">
+            <!-- Hôte physique -->
+            <rect x="30" y="30" width="860" height="540" rx="14" fill="#0d1526" stroke="#22d3ee" stroke-width="1.5"/>
+            <text x="60" y="66" font-family="Segoe UI, sans-serif" font-size="19" font-weight="700" fill="#e2e8f0">Hôte physique</text>
+            <text x="60" y="90" font-family="Consolas, monospace" font-size="13" fill="#2563eb">ESXi · vSphere Hypervisor</text>
+
+            <!-- vSwitch -->
+            <rect x="70" y="118" width="780" height="52" rx="10" fill="rgba(34,211,238,0.08)" stroke="#3b82f6" stroke-width="1.2"/>
+            <text x="460" y="150" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#67e8f9">vSwitch — réseau virtuel isolé (VLAN par domaine)</text>
+
+            <!-- Rangée 1 -->
+            <g>
+              <rect x="70" y="200" width="240" height="105" rx="10" fill="#101a30" stroke="#2b3b58" stroke-width="1.4"/>
+              <text x="190" y="232" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#e2e8f0">VM 1 · Domaine A</text>
+              <text x="190" y="256" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" fill="#2563eb">AD DS · DNS</text>
+              <text x="190" y="280" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11.5" fill="#8b9bb4">Contrôleur de domaine</text>
+
+              <rect x="340" y="200" width="240" height="105" rx="10" fill="#101a30" stroke="#2b3b58" stroke-width="1.4"/>
+              <text x="460" y="232" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#e2e8f0">VM 2 · Domaine B</text>
+              <text x="460" y="256" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" fill="#2563eb">AD DS · DNS</text>
+              <text x="460" y="280" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11.5" fill="#8b9bb4">Contrôleur de domaine</text>
+
+              <rect x="610" y="200" width="240" height="105" rx="10" fill="#101a30" stroke="#2b3b58" stroke-width="1.4"/>
+              <text x="730" y="232" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#e2e8f0">VM 3 · Domaine C</text>
+              <text x="730" y="256" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" fill="#2563eb">AD DS · DNS</text>
+              <text x="730" y="280" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11.5" fill="#8b9bb4">Contrôleur de domaine</text>
+            </g>
+
+            <!-- Rangée 2 -->
+            <g>
+              <rect x="70" y="330" width="240" height="105" rx="10" fill="#101a30" stroke="#2b3b58" stroke-width="1.4"/>
+              <text x="190" y="362" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#e2e8f0">VM 4 · Domaine D</text>
+              <text x="190" y="386" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" fill="#2563eb">AD DS · DNS</text>
+              <text x="190" y="410" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11.5" fill="#8b9bb4">Contrôleur de domaine</text>
+
+              <rect x="340" y="330" width="240" height="105" rx="10" fill="#101a30" stroke="#2b3b58" stroke-width="1.4"/>
+              <text x="460" y="362" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#e2e8f0">VM 5 · Domaine E</text>
+              <text x="460" y="386" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" fill="#2563eb">AD DS · DNS</text>
+              <text x="460" y="410" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11.5" fill="#8b9bb4">Contrôleur de domaine</text>
+
+              <rect x="610" y="330" width="240" height="105" rx="10" fill="#101a30" stroke="#2b3b58" stroke-width="1.4"/>
+              <text x="730" y="362" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#e2e8f0">VM 6 · Domaine F</text>
+              <text x="730" y="386" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" fill="#2563eb">AD DS · DNS</text>
+              <text x="730" y="410" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11.5" fill="#8b9bb4">Contrôleur de domaine</text>
+            </g>
+
+            <!-- Rangée 3 -->
+            <g>
+              <rect x="70" y="460" width="240" height="80" rx="10" fill="#101a30" stroke="#33455f" stroke-width="1.4" stroke-dasharray="5 4"/>
+              <text x="190" y="492" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#e2e8f0">VM 7-9</text>
+              <text x="190" y="516" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" fill="#2563eb">Domaines G · H · I</text>
+
+              <rect x="340" y="460" width="510" height="80" rx="10" fill="rgba(34,211,238,0.08)" stroke="#3b82f6" stroke-width="1.2"/>
+              <text x="595" y="492" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#67e8f9">Administration du lab</text>
+              <text x="595" y="516" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12.5" fill="#8b9bb4">Gestion des identités Entra ID · MFA · supervision</text>
+            </g>
+
+            <!-- Connexions vSwitch -> VM -->
+            <g stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round">
+              <line x1="190" y1="170" x2="190" y2="200"/>
+              <line x1="460" y1="170" x2="460" y2="200"/>
+              <line x1="730" y1="170" x2="730" y2="200"/>
+              <line x1="190" y1="305" x2="190" y2="330"/>
+              <line x1="460" y1="305" x2="460" y2="330"/>
+              <line x1="730" y1="305" x2="730" y2="330"/>
+              <line x1="190" y1="435" x2="190" y2="460"/>
+              <line x1="460" y1="435" x2="460" y2="460"/>
+              <line x1="730" y1="435" x2="730" y2="460"/>
+            </g>
+          </svg>
+          <figcaption>Architecture du lab : un hyperviseur ESXi, un vSwitch isolé et 9 VM — chacune son contrôleur de domaine et ses GPO.</figcaption>
+        </figure>
+
+        <div class="shot">
+          <strong>Capture d'écran à ajouter</strong>
+          Client vSphere affichant les 9 VM allumées — fichier à déposer dans <code>assets/img/capture-vsphere.png</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Réalisation ===== -->
+    <section class="project-section">
+      <div class="container">
+        <h2><span class="num">03</span>Réalisation</h2>
+        <ul>
+          <li><strong>Installation de l'hyperviseur</strong> : déploiement d'ESXi, configuration du réseau de management et du datastore de stockage des VM.</li>
+          <li><strong>Création des 9 machines virtuelles</strong> : dimensionnement CPU / RAM / disque selon le rôle, snapshots avant chaque changement majeur.</li>
+          <li><strong>Installation de Windows Server</strong> : adressage IP fixe, configuration DNS, jonction et promotion en contrôleur de domaine (rôle AD DS).</li>
+          <li><strong>Structuration de l'annuaire</strong> : unités d'organisation (OU) par service, groupes de sécurité, comptes utilisateurs et comptes de service dédiés.</li>
+          <li><strong>Stratégies de groupe (GPO)</strong> : déploiement et application des politiques de sécurité sur chaque domaine.</li>
+          <li><strong>Gestion hybride</strong> : mise en relation de l'annuaire avec Entra ID pour l'identité cloud et la MFA.</li>
+        </ul>
+        <div class="code-block">
+<span class="cmt"># Extrait — créer une OU et un compte de service dédié (PowerShell)</span>
+New-ADOrganizationalUnit -Name "Services" -Path "DC=lab,DC=local"
+New-ADUser -Name "svc-backup" -Path "OU=Services,DC=lab,DC=local" `
+  -AccountPassword (Read-Host -AsSecureString "Mot de passe") `
+  -Enabled $true <span class="cmt"># compte à privilèges minimaux, usage unique</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Sécurité ===== -->
+    <section class="project-section alt">
+      <div class="container">
+        <h2><span class="num">04</span>Sécurité appliquée</h2>
+        <ul>
+          <li><strong>Politique de mots de passe</strong> : complexité, longueur minimale et historique de mots de passe imposés par GPO sur l'ensemble des comptes du domaine.</li>
+          <li><strong>Verrouillage intelligent des comptes</strong> : verrouillage automatique après plusieurs tentatives échouées, avec réinitialisation contrôlée.</li>
+          <li><strong>Moindre privilège</strong> : comptes administrateur séparés des comptes utilisateur, droits d'administration réservés aux seuls rôles qui en ont besoin.</li>
+          <li><strong>Authentification multifacteur (MFA)</strong> : appliquée côté Entra ID pour les accès sensibles.</li>
+          <li><strong>Isolation</strong> : chaque domaine vit dans sa VM et son VLAN — une compromission n'impacte pas les autres.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== Compétences ===== -->
+    <section class="project-section">
+      <div class="container">
+        <h2><span class="num">05</span>Compétences mobilisées</h2>
+        <div class="tags">
+          <span>vSphere / ESXi</span><span>Windows Server</span><span>Active Directory</span><span>DNS</span><span>GPO</span><span>Entra ID</span><span>MFA</span><span>Virtualisation</span><span>PowerShell</span><span>Gestion des identités</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Navigation projet ===== -->
+    <div class="container">
+      <nav class="project-nav">
+        <a href="../index.html#projets">
+          <span class="dir">← Retour</span>
+          <div class="title">Tous les projets</div>
+        </a>
+        <a class="next" href="vps-kazoku-bot.html">
+          <span class="dir">Projet suivant →</span>
+          <div class="title">VPS Linux durci + KAZOKU-BOT</div>
+        </a>
+      </nav>
+    </div>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <span class="prompt"><span class="u">lenaic</span>@<span class="p">portfolio</span>:~$ echo "© <span class="year">2026</span> Lénaïc Dissaké"</span>
+      <nav class="f-links">
+        <a href="https://github.com/narcusensei" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/lenaic-d" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://tryhackme.com/p/narcus" target="_blank" rel="noopener">TryHackMe</a>
+        <a href="../cv/CV-Lenaic-Dissake.pdf">CV</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

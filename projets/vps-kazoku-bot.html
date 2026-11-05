@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VPS Linux durci + KAZOKU-BOT — Lénaïc Dissaké</title>
+  <meta name="description" content="Bot Discord d'administration auto-hébergé sur un VPS Linux durci et maintenu en production : pare-feu, SSH par clés, correctifs réguliers et supervision.">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">
+        <span class="monogram">LD</span>
+        <span class="name">Lénaïc Dissaké</span>
+      </a>
+      <nav class="main-nav" id="main-nav">
+        <a href="../index.html#projets">Projets</a>
+        <a href="../index.html#a-propos">À propos</a>
+        <a href="../index.html#competences">Compétences</a>
+        <a href="../index.html#certifications">Certifications</a>
+        <a href="../index.html#contact" class="nav-cta">Me contacter</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== Hero projet ===== -->
+    <section class="project-hero">
+      <div class="container">
+        <a class="breadcrumb" href="../index.html#projets">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Tous les projets
+        </a>
+        <div class="badges"><span class="badge">Projet personnel · Python · Linux</span><span class="status"><span class="pip"></span> EN PRODUCTION</span></div>
+        <h1>KAZOKU-BOT : un service Discord maintenu en production sur un VPS durci</h1>
+        <p class="lead">Bot d'administration et de surveillance de serveur Discord, auto-hébergé sur un VPS Linux que j'ai sécurisé et que je maintiens : pare-feu, SSH par clés, application des correctifs et supervision.</p>
+        <div class="project-meta">
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 14V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8"/></svg>
+            VPS Linux
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            Python
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Durcissement · Supervision
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contexte ===== -->
+    <section class="project-section">
+      <div class="container">
+        <h2><span class="num">01</span>Contexte</h2>
+        <p>Administrateur d'un serveur Discord communautaire, j'ai développé KAZOKU-BOT pour automatiser sa gestion : surveillance, journaux d'événements et commandes d'administration. Plutôt que d'utiliser un bot d'hébergeur tiers, j'ai choisi de l'auto-héberger sur mon propre VPS — ce qui m'oblige à assumer la chaîne complète : système, réseau, sécurité et exploitation.</p>
+        <p>C'est un vrai service en production, disponible 24h/24 : une indisponibilité se voit immédiatement. Cela impose des gestes d'administrateur systèmes concrets — durcissement, mises à jour, supervision et remédiation.</p>
+      </div>
+    </section>
+
+    <!-- ===== Architecture ===== -->
+    <section class="project-section alt">
+      <div class="container">
+        <h2><span class="num">02</span>Architecture</h2>
+        <p>Le bot tourne comme un service Linux sur le VPS, n'expose aucun port public autre que SSH (restreint), et dialogue avec l'API Discord en HTTPS sortant.</p>
+
+        <figure class="figure">
+          <svg viewBox="0 0 920 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma d'architecture : membres Discord vers API Discord vers VPS durci exécutant le bot Python">
+            <!-- Membres -->
+            <rect x="30" y="150" width="170" height="110" rx="10" fill="#101a30" stroke="#2b3b58" stroke-width="1.4"/>
+            <text x="115" y="192" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#e2e8f0">Membres</text>
+            <text x="115" y="216" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12.5" fill="#8b9bb4">Serveur Discord</text>
+
+            <!-- API Discord -->
+            <rect x="255" y="150" width="170" height="110" rx="10" fill="rgba(34,211,238,0.08)" stroke="#3b82f6" stroke-width="1.4"/>
+            <text x="340" y="192" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#67e8f9">API Discord</text>
+            <text x="340" y="216" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#8b9bb4">HTTPS sortant</text>
+
+            <!-- Flèches -->
+            <g stroke="#4c617f" stroke-width="1.8" fill="none">
+              <line x1="200" y1="190" x2="255" y2="190" stroke-linecap="round"/>
+              <line x1="255" y1="222" x2="200" y2="222" stroke-linecap="round"/>
+              <line x1="425" y1="190" x2="480" y2="190" stroke-linecap="round"/>
+              <line x1="480" y1="222" x2="425" y2="222" stroke-linecap="round"/>
+            </g>
+
+            <!-- VPS -->
+            <rect x="480" y="30" width="410" height="370" rx="14" fill="#0d1526" stroke="#22d3ee" stroke-width="1.5"/>
+            <text x="510" y="66" font-family="Segoe UI, sans-serif" font-size="19" font-weight="700" fill="#e2e8f0">VPS Linux</text>
+            <text x="510" y="90" font-family="Consolas, monospace" font-size="13" fill="#2563eb">Debian · accès SSH par clés uniquement</text>
+
+            <!-- Pare-feu -->
+            <rect x="510" y="112" width="350" height="46" rx="8" fill="rgba(34,211,238,0.08)" stroke="#22d3ee" stroke-width="1.4"/>
+            <text x="685" y="141" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#67e8f9">Pare-feu — tout bloqué par défaut, SSH filtré</text>
+
+            <!-- Bot -->
+            <rect x="510" y="180" width="350" height="70" rx="8" fill="#101a30" stroke="#2b3b58" stroke-width="1.4"/>
+            <text x="530" y="210" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#e2e8f0">KAZOKU-BOT</text>
+            <text x="530" y="232" font-family="Consolas, monospace" font-size="12" fill="#2563eb">Python · service systemd (auto-restart)</text>
+
+            <!-- Logs -->
+            <rect x="510" y="270" width="165" height="70" rx="8" fill="#101a30" stroke="#2b3b58" stroke-width="1.4"/>
+            <text x="592" y="300" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0">Supervision</text>
+            <text x="592" y="322" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" fill="#8b9bb4">logs · état du service</text>
+
+            <!-- Patchs -->
+            <rect x="695" y="270" width="165" height="70" rx="8" fill="#101a30" stroke="#2b3b58" stroke-width="1.4"/>
+            <text x="777" y="300" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0">Correctifs</text>
+            <text x="777" y="322" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" fill="#8b9bb4">mises à jour régulières</text>
+
+            <!-- Liaisons internes -->
+            <g stroke="#3b82f6" stroke-width="1.4">
+              <line x1="685" y1="158" x2="685" y2="180"/>
+              <line x1="650" y1="250" x2="620" y2="270"/>
+              <line x1="720" y1="250" x2="750" y2="270"/>
+            </g>
+
+            <!-- Admin -->
+            <rect x="30" y="330" width="170" height="60" rx="10" fill="#101a30" stroke="#2b3b58" stroke-width="1.4"/>
+            <text x="115" y="356" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0">Administration</text>
+            <text x="115" y="376" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#8b9bb4">SSH · clé publique</text>
+            <g stroke="#4c617f" stroke-width="1.8" fill="none">
+              <path d="M 200 360 C 330 360 390 320 480 280" stroke-linecap="round" stroke-dasharray="6 5"/>
+            </g>
+          </svg>
+          <figcaption>Le VPS n'expose que le strict nécessaire : le bot sort en HTTPS vers l'API Discord, l'administration passe par SSH avec authentification par clés.</figcaption>
+        </figure>
+
+        <div class="shot">
+          <strong>Capture d'écran à ajouter</strong>
+          Terminal avec <code>systemctl status kazoku-bot</code> + <code>ufw status</code> — fichier à déposer dans <code>assets/img/capture-vps.png</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Réalisation ===== -->
+    <section class="project-section">
+      <div class="container">
+        <h2><span class="num">03</span>Réalisation</h2>
+        <ul>
+          <li><strong>Installation du serveur</strong> : système Linux minimal sur VPS, partitionnement et création d'un utilisateur non-root pour l'exploitation.</li>
+          <li><strong>Durcissement SSH</strong> : authentification par clés uniquement (mots de passe désactivés), connexion root interdite.</li>
+          <li><strong>Pare-feu</strong> : politique par défaut de refus, seuls les flux nécessaires sont autorisés.</li>
+          <li><strong>Développement du bot</strong> : Python — commandes d'administration du serveur, surveillance et journalisation des événements.</li>
+          <li><strong>Mise en production</strong> : exécution comme service Linux avec redémarrage automatique, indépendant de ma session.</li>
+          <li><strong>Maintenance continue</strong> : application des correctifs système, vérification des journaux et supervision de l'état du service.</li>
+        </ul>
+        <div class="code-block">
+<span class="cmt"># Durcissement SSH — /etc/ssh/sshd_config</span>
+PasswordAuthentication no      <span class="cmt"># clés uniquement</span>
+PermitRootLogin no            <span class="cmt"># pas de root direct</span>
+
+<span class="cmt"># Pare-feu — ne laisser que le nécessaire</span>
+<span class="cmd">$</span> sudo ufw default deny incoming
+<span class="cmd">$</span> sudo ufw allow ssh
+<span class="cmd">$</span> sudo ufw enable
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Sécurité ===== -->
+    <section class="project-section alt">
+      <div class="container">
+        <h2><span class="num">04</span>Sécurité appliquée</h2>
+        <ul>
+          <li><strong>Réduction de la surface d'attaque</strong> : services installés au strict minimum, ports exposés réduits.</li>
+          <li><strong>SSH par clés</strong> : suppression de l'authentification par mot de passe — attaque par force brute rendue inopérante.</li>
+          <li><strong>Moindre privilège</strong> : le bot ne tourne pas en root, avec seulement les droits dont il a besoin.</li>
+          <li><strong>Patch management</strong> : correctifs de sécurité appliqués régulièrement pour réduire la fenêtre d'exposition.</li>
+          <li><strong>Supervision &amp; journaux</strong> : suivi des logs système et applicatifs pour détecter tout comportement anormal.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== Compétences ===== -->
+    <section class="project-section">
+      <div class="container">
+        <h2><span class="num">05</span>Compétences mobilisées</h2>
+        <div class="tags">
+          <span>Linux</span><span>Durcissement</span><span>SSH</span><span>Pare-feu</span><span>Python</span><span>systemd</span><span>Patch management</span><span>Supervision / logs</span><span>Bash</span><span>Exploitation en production</span>
+        </div>
+        <p style="margin-top:22px;">
+          <a class="btn btn-outline" href="https://github.com/narcusensei/KAZOKU-BOT" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.55v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.8 1.19 1.82 1.19 3.08 0 4.41-2.69 5.38-5.26 5.66.41.36.78 1.05.78 2.12v3.15c0 .3.2.66.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+            Voir le code du bot — GitHub
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Navigation projet ===== -->
+    <div class="container">
+      <nav class="project-nav">
+        <a href="vsphere-ad.html">
+          <span class="dir">← Projet précédent</span>
+          <div class="title">Lab vSphere &amp; Active Directory</div>
+        </a>
+        <a class="next" href="scripts.html">
+          <span class="dir">Projet suivant →</span>
+          <div class="title">Scripts d'automatisation</div>
+        </a>
+      </nav>
+    </div>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <span class="prompt"><span class="u">lenaic</span>@<span class="p">portfolio</span>:~$ echo "© <span class="year">2026</span> Lénaïc Dissaké"</span>
+      <nav class="f-links">
+        <a href="https://github.com/narcusensei" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/lenaic-d" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://tryhackme.com/p/narcus" target="_blank" rel="noopener">TryHackMe</a>
+        <a href="../cv/CV-Lenaic-Dissake.pdf">CV</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

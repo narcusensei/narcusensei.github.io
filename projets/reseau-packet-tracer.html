@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maquettes réseau Cisco Packet Tracer — Lénaïc Dissaké</title>
+  <meta name="description" content="Simulation d'architectures réseau sur Cisco Packet Tracer : segmentation VLAN, routage inter-réseaux et DHCP — conception et validation avant déploiement.">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">
+        <span class="monogram">LD</span>
+        <span class="name">Lénaïc Dissaké</span>
+      </a>
+      <nav class="main-nav" id="main-nav">
+        <a href="../index.html#projets">Projets</a>
+        <a href="../index.html#a-propos">À propos</a>
+        <a href="../index.html#competences">Compétences</a>
+        <a href="../index.html#certifications">Certifications</a>
+        <a href="../index.html#contact" class="nav-cta">Me contacter</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== Hero projet ===== -->
+    <section class="project-hero">
+      <div class="container">
+        <a class="breadcrumb" href="../index.html#projets">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Tous les projets
+        </a>
+        <div class="badges"><span class="badge">Projet personnel · Cisco Packet Tracer</span><span class="status cyan"><span class="pip"></span> MAQUETTES DISPONIBLES</span></div>
+        <h1>Concevoir des réseaux segmentés avant de les déployer</h1>
+        <p class="lead">Maquettes d'architectures réseau sur Cisco Packet Tracer : segmentation par VLAN, routage inter-réseaux et distribution d'adresses par DHCP — pour valider une conception avant de toucher à la production.</p>
+        <div class="project-meta">
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>
+            VLAN · Trunking 802.1Q
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Routage inter-réseaux
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 14V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8"/></svg>
+            DHCP
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contexte ===== -->
+    <section class="project-section">
+      <div class="container">
+        <h2><span class="num">01</span>Contexte</h2>
+        <p>Avant de câbler ou de configurer quoi que ce soit, un administrateur réseau conçoit et vérifie son architecture sur papier — ou mieux, en simulation. Packet Tracer me permet de construire des réseaux complets, de les casser volontairement et d'observer le comportement des protocoles.</p>
+        <p>Ces maquettes couvrent les briques classiques d'un réseau d'entreprise : segmentation par VLAN pour isoler les populations, routage pour les faire communiquer de façon contrôlée, et DHCP pour automatiser l'adressage.</p>
+      </div>
+    </section>
+
+    <!-- ===== Architecture ===== -->
+    <section class="project-section alt">
+      <div class="container">
+        <h2><span class="num">02</span>Architecture de référence</h2>
+
+        <figure class="figure">
+          <svg viewBox="0 0 920 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma réseau : routeur relié par trunks 802.1Q à deux switchs, VLAN admin et utilisateurs côté gauche, serveurs DHCP et DNS côté droit">
+            <!-- Routeur -->
+            <rect x="330" y="30" width="260" height="80" rx="12" fill="rgba(34,211,238,0.08)" stroke="#22d3ee" stroke-width="1.5"/>
+            <text x="460" y="63" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#67e8f9">Routeur</text>
+            <text x="460" y="87" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12.5" fill="#8b9bb4">Routage inter-VLAN · sous-interfaces</text>
+
+            <!-- Trunks -->
+            <g stroke="#4c617f" stroke-width="1.8" stroke-linecap="round">
+              <line x1="380" y1="110" x2="200" y2="170"/>
+              <line x1="540" y1="110" x2="720" y2="170"/>
+            </g>
+            <text x="235" y="132" font-family="Consolas, monospace" font-size="11.5" fill="#8b9bb4">trunk 802.1Q</text>
+            <text x="640" y="132" font-family="Consolas, monospace" font-size="11.5" fill="#8b9bb4">trunk 802.1Q</text>
+
+            <!-- Switch accès -->
+            <rect x="80" y="170" width="240" height="56" rx="10" fill="#101a30" stroke="#2b3b58" stroke-width="1.4"/>
+            <text x="200" y="194" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14.5" font-weight="700" fill="#e2e8f0">Switch accès</text>
+            <text x="200" y="213" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11.5" fill="#8b9bb4">ports en mode access</text>
+
+            <!-- Switch serveurs -->
+            <rect x="600" y="170" width="240" height="56" rx="10" fill="#101a30" stroke="#2b3b58" stroke-width="1.4"/>
+            <text x="720" y="194" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14.5" font-weight="700" fill="#e2e8f0">Switch serveurs</text>
+            <text x="720" y="213" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11.5" fill="#8b9bb4">VLAN 30 — serveurs</text>
+
+            <!-- Liaisons descendantes -->
+            <g stroke="#33455f" stroke-width="1.4">
+              <line x1="145" y1="226" x2="145" y2="260"/>
+              <line x1="255" y1="226" x2="255" y2="260"/>
+              <line x1="720" y1="226" x2="720" y2="260"/>
+            </g>
+
+            <!-- VLAN 10 -->
+            <rect x="80" y="260" width="130" height="150" rx="10" fill="#0d1526" stroke="#3b82f6" stroke-width="1.2"/>
+            <text x="145" y="288" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" font-weight="700" fill="#67e8f9">VLAN 10</text>
+            <text x="145" y="308" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12.5" fill="#8b9bb4">Administration</text>
+            <g>
+              <rect x="100" y="326" width="42" height="30" rx="5" fill="#101a30" stroke="#33455f" stroke-width="1.2"/>
+              <rect x="148" y="326" width="42" height="30" rx="5" fill="#101a30" stroke="#33455f" stroke-width="1.2"/>
+              <rect x="100" y="366" width="42" height="30" rx="5" fill="#101a30" stroke="#33455f" stroke-width="1.2"/>
+              <rect x="148" y="366" width="42" height="30" rx="5" fill="#101a30" stroke="#33455f" stroke-width="1.2"/>
+              <text x="121" y="448" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#6b7f9c">postes admin</text>
+            </g>
+
+            <!-- VLAN 20 -->
+            <rect x="230" y="260" width="130" height="150" rx="10" fill="#0d1526" stroke="#3b82f6" stroke-width="1.2"/>
+            <text x="295" y="288" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" font-weight="700" fill="#67e8f9">VLAN 20</text>
+            <text x="295" y="308" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12.5" fill="#8b9bb4">Utilisateurs</text>
+            <g>
+              <rect x="250" y="326" width="42" height="30" rx="5" fill="#101a30" stroke="#33455f" stroke-width="1.2"/>
+              <rect x="298" y="326" width="42" height="30" rx="5" fill="#101a30" stroke="#33455f" stroke-width="1.2"/>
+              <rect x="250" y="366" width="42" height="30" rx="5" fill="#101a30" stroke="#33455f" stroke-width="1.2"/>
+              <rect x="298" y="366" width="42" height="30" rx="5" fill="#101a30" stroke="#33455f" stroke-width="1.2"/>
+              <text x="295" y="448" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#6b7f9c">postes utilisateurs</text>
+            </g>
+
+            <!-- Serveurs -->
+            <g>
+              <rect x="640" y="260" width="160" height="64" rx="10" fill="#101a30" stroke="#2b3b58" stroke-width="1.4"/>
+              <text x="720" y="288" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0">Serveur DHCP</text>
+              <text x="720" y="308" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11.5" fill="#8b9bb4">baux par VLAN (pools)</text>
+
+              <rect x="640" y="346" width="160" height="64" rx="10" fill="#101a30" stroke="#2b3b58" stroke-width="1.4"/>
+              <text x="720" y="374" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0">Serveur DNS</text>
+              <text x="720" y="394" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11.5" fill="#8b9bb4">résolution interne</text>
+            </g>
+
+            <!-- Légende -->
+            <rect x="80" y="440" width="360" height="40" rx="8" fill="none"/>
+            <text x="80" y="486" font-family="Segoe UI, sans-serif" font-size="11.5" fill="#6b7f9c">Un VLAN = un domaine de diffusion isolé ; le routeur autorise les flux nécessaires entre segments.</text>
+          </svg>
+          <figcaption>Architecture type : segmentation VLAN, trunks 802.1Q vers le routeur, DHCP et DNS centralisés dans le VLAN serveurs.</figcaption>
+        </figure>
+
+        <div class="shot">
+          <strong>Capture d'écran à ajouter</strong>
+          Topologie Packet Tracer — fichier à déposer dans <code>assets/img/capture-packet-tracer.png</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Réalisation ===== -->
+    <section class="project-section">
+      <div class="container">
+        <h2><span class="num">03</span>Réalisation &amp; validation</h2>
+        <ul>
+          <li><strong>Plan d'adressage</strong> : un sous-réseau par VLAN, adressage cohérent et documenté.</li>
+          <li><strong>Création des VLAN</strong> sur les switchs, affectation des ports en mode access et configuration des liens trunk 802.1Q vers le routeur.</li>
+          <li><strong>Routage inter-VLAN</strong> : sous-interfaces sur le routeur pour router entre segments de façon contrôlée.</li>
+          <li><strong>DHCP</strong> : pools par VLAN, passerelle et DNS distribués automatiquement aux clients.</li>
+          <li><strong>Validation</strong> : tests <code>ping</code> et <code>ipconfig</code> — isolation intra-VLAN, communication inter-VLAN, obtention des baux DHCP, simulation de pannes pour observer le comportement.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== Compétences ===== -->
+    <section class="project-section alt">
+      <div class="container">
+        <h2><span class="num">04</span>Compétences mobilisées</h2>
+        <div class="tags">
+          <span>Cisco IOS</span><span>VLAN</span><span>Trunking 802.1Q</span><span>Routage</span><span>DHCP</span><span>DNS</span><span>Plan d'adressage</span><span>Résolution de problèmes</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Navigation projet ===== -->
+    <div class="container">
+      <nav class="project-nav">
+        <a href="scripts.html">
+          <span class="dir">← Projet précédent</span>
+          <div class="title">Scripts d'automatisation</div>
+        </a>
+        <a class="next" href="tryhackme.html">
+          <span class="dir">Projet suivant →</span>
+          <div class="title">TryHackMe — Détection d'incidents</div>
+        </a>
+      </nav>
+    </div>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <span class="prompt"><span class="u">lenaic</span>@<span class="p">portfolio</span>:~$ echo "© <span class="year">2026</span> Lénaïc Dissaké"</span>
+      <nav class="f-links">
+        <a href="https://github.com/narcusensei" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/lenaic-d" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://tryhackme.com/p/narcus" target="_blank" rel="noopener">TryHackMe</a>
+        <a href="../cv/CV-Lenaic-Dissake.pdf">CV</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
