@@ -79,6 +79,6 @@ Jamais déployé ? Sur GitHub : dépôt → *Settings* → *Pages* → Source : 
 - [x] Capture du VPS (`systemctl status` + `ufw status`) → `assets/img/capture-vps.png` ✓ intégrée
 - [ ] Capture topologie Packet Tracer → `assets/img/capture-packet-tracer.png`
 - [ ] Capture profil TryHackMe (rang, badges) → `assets/img/capture-tryhackme.png`
-- [ ] Créer le dépôt GitHub des scripts et remplacer le bloc `shot` de `scripts.html`
+- [x] Dépôt GitHub des scripts : [admin-toolkit](https://github.com/narcusensei/admin-toolkit) ✓ intégré
 - [ ] Rédiger les write-ups n°1 et n°2 (rooms au choix)
 - [ ] Ajouter les liens Credly des certifications si disponibles

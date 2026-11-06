@@ -57,6 +57,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
             Bash
           </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.55v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.8 1.19 1.82 1.19 3.08 0 4.41-2.69 5.38-5.26 5.66.41.36.78 1.05.78 2.12v3.15c0 .3.2.66.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+            <a href="https://github.com/narcusensei/admin-toolkit" target="_blank" rel="noopener">github/narcusensei/admin-toolkit</a>
+          </span>
         </div>
       </div>
     </section>
@@ -66,7 +70,7 @@
       <div class="container">
         <h2><span class="num">01</span>Démarche</h2>
         <p>Chaque tâche faite plus de deux fois mérite un script. Administrer des VM, des comptes ou des services à la main, c'est perdre du temps et surtout introduire des écarts entre les environnements.</p>
-        <p>Mes scripts suivent trois règles : un objectif unique et clair, un mode de fonctionnement à sec (<em>dry-run</em>) quand l'action est sensible, et une sortie lisible qui dit exactement ce qui a été fait.</p>
+        <p>L'ensemble est fédéré par <code>admin.sh</code>, une console à menu qui sert de point d'entrée unique. Mes scripts suivent trois règles : un objectif unique et clair, un mode de fonctionnement à sec (<em>dry-run</em>) quand l'action est sensible, et une sortie lisible qui dit exactement ce qui a été fait.</p>
       </div>
     </section>
 
@@ -75,7 +79,7 @@
       <div class="container">
         <h2><span class="num">02</span>Exemples de réalisations</h2>
 
-        <h3 style="margin-top:26px;font-size:17px;">Gestion d'utilisateurs Active Directory — PowerShell</h3>
+        <h3 style="margin-top:26px;font-size:17px;">Gestion d'utilisateurs Active Directory — <code>ad/New-ADUsersBulk.ps1</code></h3>
         <p>Création de comptes en masse depuis un fichier CSV : uniformité des attributs, mot de passe temporaire, premier changement de mot de passe forcé.</p>
         <div class="code-block">
 <span class="cmt"># Import d'utilisateurs depuis un CSV (Nom;Prenom;Service)</span>
@@ -89,37 +93,40 @@ Import-Csv -Path "utilisateurs.csv" -Delimiter ";" | ForEach-Object {
 }
         </div>
 
-        <h3 style="margin-top:34px;font-size:17px;">Maintenance du VPS — Bash</h3>
+        <h3 style="margin-top:34px;font-size:17px;">Maintenance du VPS — <code>vps/vps-maintenance.sh</code></h3>
         <p>Mise à jour, nettoyage et état du service bot, avec résumé en fin d'exécution — exécuté régulièrement pour garder le serveur propre.</p>
         <div class="code-block">
 <span class="cmt">#!/usr/bin/env bash</span>
-<span class="cmt"># maintenance.sh — mise à jour + rapport d'état du VPS</span>
+<span class="cmt"># vps-maintenance.sh — mise à jour + rapport d'état du VPS</span>
 <span class="cmd">$</span> sudo apt update && sudo apt upgrade -y
 <span class="cmd">$</span> sudo apt autoremove -y
 <span class="cmd">$</span> systemctl is-active k4zkbot <span class="cmt"># le bot tourne-t-il ?</span>
 <span class="cmd">$</span> df -h /  <span class="cmt"># espace disque restant</span>
         </div>
 
-        <h3 style="margin-top:34px;font-size:17px;">Contrôle de santé — Python</h3>
+        <h3 style="margin-top:34px;font-size:17px;">Contrôle de santé — <code>sante/healthcheck.py</code></h3>
         <p>Vérification périodique de services et endpoints : ping HTTP, expiration de certificats, occupation disque — et alerte en cas d'anomalie (log dédié).</p>
         <div class="code-block">
-<span class="cmt"># check_services.py — supervision légère multi-cibles</span>
+<span class="cmt"># healthcheck.py — supervision légère, zéro dépendance (stdlib)</span>
+<span class="cmt"># cibles définies dans healthcheck.example.json</span>
 cibles = {"API Discord": "https://discord.com",
           "Bot local":  "http://127.0.0.1:8080/health"}
 
 for nom, url in cibles.items():
     try:
-        code = httpx.get(url, timeout=5).status_code
+        code = urlopen(Request(url), timeout=5).status
         etat = "OK" if code == 200 else f"ALERTE ({code})"
-    except httpx.ConnectError:
+    except URLError:
         etat = "INDISPONIBLE"
     print(f"[{etat:^15}] {nom}")
         </div>
 
-        <div class="shot">
-          <strong>Dépôt GitHub à créer</strong>
-          Publiez vos scripts dans un dépôt public <code>github.com/narcusensei/scripts-admin</code> puis remplacez ce bloc par un lien vers le dépôt.
-        </div>
+        <p style="margin-top:26px;">
+          <a class="btn btn-primary" href="https://github.com/narcusensei/admin-toolkit" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.55v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.8 1.19 1.82 1.19 3.08 0 4.41-2.69 5.38-5.26 5.66.41.36.78 1.05.78 2.12v3.15c0 .3.2.66.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+            Explorer le dépôt admin-toolkit
+          </a>
+        </p>
       </div>
     </section>
 
