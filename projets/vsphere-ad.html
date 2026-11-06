@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lab vSphere &amp; Active Directory — Lénaïc Dissaké</title>
-  <meta name="description" content="Déploiement et administration d'un hyperviseur vSphere hébergeant 9 VM avec annuaire Active Directory : politiques de mots de passe, moindre privilège, verrouillage des comptes et MFA.">
+  <meta name="description" content="Déploiement et administration d'un hyperviseur vSphere hébergeant 9 VM avec annuaire Active Directory : politiques de mots de passe, moindre privilège, verrouillage des comptes et audit des authentifications.">
   <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,7 +55,7 @@
           </span>
           <span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            GPO · Moindre privilège · MFA
+            GPO · Moindre privilège · Verrouillage
           </span>
         </div>
       </div>
@@ -133,7 +133,7 @@
 
               <rect x="340" y="460" width="510" height="80" rx="10" fill="rgba(34,211,238,0.08)" stroke="#3b82f6" stroke-width="1.2"/>
               <text x="595" y="492" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#67e8f9">Administration du lab</text>
-              <text x="595" y="516" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12.5" fill="#8b9bb4">Gestion des identités Entra ID · MFA · supervision</text>
+              <text x="595" y="516" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12.5" fill="#8b9bb4">RSAT · GPMC · journaux de sécurité</text>
             </g>
 
             <!-- Connexions vSwitch -> VM -->
@@ -164,7 +164,7 @@
           <li><strong>Installation de Windows Server</strong> : adressage IP fixe, configuration DNS, jonction et promotion en contrôleur de domaine (rôle AD DS).</li>
           <li><strong>Structuration de l'annuaire</strong> : unités d'organisation (OU) par service, groupes de sécurité, comptes utilisateurs et comptes de service dédiés.</li>
           <li><strong>Stratégies de groupe (GPO)</strong> : déploiement et application des politiques de sécurité sur chaque domaine.</li>
-          <li><strong>Gestion hybride</strong> : mise en relation de l'annuaire avec Entra ID pour l'identité cloud et la MFA.</li>
+          <li><strong>Administration quotidienne</strong> : consoles RSAT et GPMC depuis le poste d'administration, journaux de sécurité et vérification de l'application des GPO.</li>
         </ul>
         <div class="code-block">
 <span class="cmt"># Extrait — créer une OU et un compte de service dédié (PowerShell)</span>
@@ -184,7 +184,7 @@ New-ADUser -Name "svc-backup" -Path "OU=Services,DC=lab,DC=local" `
           <li><strong>Politique de mots de passe</strong> : complexité, longueur minimale et historique de mots de passe imposés par GPO sur l'ensemble des comptes du domaine.</li>
           <li><strong>Verrouillage intelligent des comptes</strong> : verrouillage automatique après plusieurs tentatives échouées, avec réinitialisation contrôlée.</li>
           <li><strong>Moindre privilège</strong> : comptes administrateur séparés des comptes utilisateur, droits d'administration réservés aux seuls rôles qui en ont besoin.</li>
-          <li><strong>Authentification multifacteur (MFA)</strong> : appliquée côté Entra ID pour les accès sensibles.</li>
+          <li><strong>Audit des authentifications</strong> : suivi des échecs de connexion dans les journaux de sécurité pour repérer les tentatives de force brute.</li>
           <li><strong>Isolation</strong> : chaque domaine vit dans sa VM et son VLAN — une compromission n'impacte pas les autres.</li>
         </ul>
       </div>
@@ -195,7 +195,7 @@ New-ADUser -Name "svc-backup" -Path "OU=Services,DC=lab,DC=local" `
       <div class="container">
         <h2><span class="num">05</span>Compétences mobilisées</h2>
         <div class="tags">
-          <span>vSphere / ESXi</span><span>Windows Server</span><span>Active Directory</span><span>DNS</span><span>GPO</span><span>Entra ID</span><span>MFA</span><span>Virtualisation</span><span>PowerShell</span><span>Gestion des identités</span>
+          <span>vSphere / ESXi</span><span>Windows Server</span><span>Active Directory</span><span>DNS</span><span>GPO</span><span>RSAT · GPMC</span><span>gpresult</span><span>Virtualisation</span><span>PowerShell</span><span>Gestion des identités</span>
         </div>
       </div>
     </section>
