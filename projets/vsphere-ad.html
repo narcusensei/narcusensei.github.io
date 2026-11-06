@@ -81,7 +81,9 @@
             <!-- Hôte physique -->
             <rect x="30" y="30" width="860" height="540" rx="14" fill="#0d1526" stroke="#22d3ee" stroke-width="1.5"/>
             <text x="60" y="66" font-family="Segoe UI, sans-serif" font-size="19" font-weight="700" fill="#e2e8f0">Hôte physique</text>
-            <text x="60" y="90" font-family="Consolas, monospace" font-size="13" fill="#2563eb">ESXi · vSphere Hypervisor</text>
+            <text x="60" y="90" font-family="Consolas, monospace" font-size="13" fill="#22d3ee">ESXi · vSphere Hypervisor</text>
+            <text x="860" y="66" text-anchor="end" font-family="Segoe UI, sans-serif" font-size="12.5" fill="#8b9bb4">Datastore VMFS · 9 VM</text>
+            <text x="860" y="88" text-anchor="end" font-family="Segoe UI, sans-serif" font-size="12.5" fill="#8b9bb4">Snapshot avant chaque changement majeur</text>
 
             <!-- vSwitch -->
             <rect x="70" y="118" width="780" height="52" rx="10" fill="rgba(34,211,238,0.08)" stroke="#3b82f6" stroke-width="1.2"/>
@@ -147,13 +149,8 @@
               <line x1="730" y1="435" x2="730" y2="460"/>
             </g>
           </svg>
-          <figcaption>Architecture du lab : un hyperviseur ESXi, un vSwitch isolé et 9 VM — chacune son contrôleur de domaine et ses GPO.</figcaption>
+          <figcaption>Architecture du lab (schéma de synthèse du TP) : un hyperviseur ESXi, un vSwitch isolé et 9 VM — chacune son propre contrôleur de domaine Active Directory, ses GPO et ses règles de sécurité.</figcaption>
         </figure>
-
-        <div class="shot">
-          <strong>Capture d'écran à ajouter</strong>
-          Client vSphere affichant les 9 VM allumées — fichier à déposer dans <code>assets/img/capture-vsphere.png</code>
-        </div>
       </div>
     </section>
 

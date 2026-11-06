@@ -75,7 +75,7 @@ Jamais déployé ? Sur GitHub : dépôt → *Settings* → *Pages* → Source : 
 
 ## To-do contenu (placeholders restants)
 
-- [ ] Capture du lab vSphere → `assets/img/capture-vsphere.png`
+- [x] Lab vSphere : schéma SVG de synthèse en place (capture non nécessaire)
 - [x] Capture du VPS (`systemctl status` + `ufw status`) → `assets/img/capture-vps.png` ✓ intégrée
 - [ ] Capture topologie Packet Tracer → `assets/img/capture-packet-tracer.png`
 - [ ] Capture profil TryHackMe (rang, badges) → `assets/img/capture-tryhackme.png`
