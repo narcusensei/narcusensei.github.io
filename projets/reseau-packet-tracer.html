@@ -192,10 +192,61 @@
         </div>
       </div>
     </section>
+
+    <!-- ===== Vérification CLI ===== -->
+    <section class="project-section">
+      <div class="container">
+        <h2><span class="num">05</span>Vérification côté équipements (CLI IOS)</h2>
+        <p>La maquette ne se valide pas seulement côté utilisateur : chaque équipement est contrôlé depuis l'IOS. Extraits réels des commandes de vérification.</p>
+
+        <p style="margin-top:18px;"><strong>Ports bien affectés à leurs VLAN</strong> — <code>show vlan brief</code> sur SW-ACCES :</p>
+        <div class="code-block">SW-ACCES# show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/2
+10   ADMIN                            active    <span class="cmd">Fa0/1, Fa0/2, Fa0/3, Fa0/4</span>
+20   USERS                            active    <span class="cmd">Fa0/5, Fa0/6, Fa0/7, Fa0/8</span></div>
+
+        <p style="margin-top:22px;"><strong>Trunks 802.1Q actifs et VLANs autorisés</strong> — <code>show interfaces trunk</code> :</p>
+        <div class="code-block">SW-ACCES# show interfaces trunk
+Port        Mode         Encapsulation  Status        Native vlan
+Gig0/1      on           802.1q         trunking      1
+
+<span class="cmt"># VLANs autorisés — côté accès et côté serveurs :</span>
+Gig0/1      1,10,20    <span class="cmt">(SW-ACCES)</span>
+Gig0/1      1,30       <span class="cmt">(SW-SERVEURS)</span></div>
+
+        <p style="margin-top:22px;"><strong>Sous-interfaces du routeur opérationnelles</strong> — <code>show ip interface brief</code> :</p>
+        <div class="code-block">R1# show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0     unassigned      YES unset  up                    up
+GigabitEthernet0/0.10  192.168.10.1    YES manual up                    up
+GigabitEthernet0/0.20  192.168.20.1    YES manual up                    up
+GigabitEthernet0/1     unassigned      YES unset  up                    up
+GigabitEthernet0/1.30  192.168.30.1    YES manual up                    up
+<span class="cmt"># les interfaces physiques portent le trunk ; les sous-interfaces routent chaque VLAN</span></div>
+
+        <p style="margin-top:22px;"><strong>Table de routage : les trois réseaux connectés</strong> — <code>show ip route</code> :</p>
+        <div class="code-block">R1# show ip route
+C       192.168.10.0/24 is directly connected, GigabitEthernet0/0.10
+C       192.168.20.0/24 is directly connected, GigabitEthernet0/0.20
+C       192.168.30.0/24 is directly connected, GigabitEthernet0/1.30</div>
+
+        <p style="margin-top:22px;"><strong>La preuve du relais DHCP</strong> — <code>show ip interface GigabitEthernet0/0.10</code> :</p>
+        <div class="code-block">R1# show ip interface GigabitEthernet0/0.10
+  Helper address is 192.168.30.10
+<span class="cmt"># les baux DHCP des VLAN 10 et 20 sont relais vers le serveur centralisé</span></div>
+      </div>
+    </section>
     <!-- ===== Compétences ===== -->
     <section class="project-section alt">
       <div class="container">
-        <h2><span class="num">05</span>Compétences mobilisées</h2>
+        <h2><span class="num">06</span>Compétences mobilisées</h2>
         <div class="tags">
           <span>Cisco IOS</span><span>VLAN</span><span>Trunking 802.1Q</span><span>Routage</span><span>DHCP</span><span>DNS</span><span>Plan d'adressage</span><span>Résolution de problèmes</span>
         </div>
