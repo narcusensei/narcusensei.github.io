@@ -80,5 +80,5 @@ Jamais déployé ? Sur GitHub : dépôt → *Settings* → *Pages* → Source : 
 - [ ] Capture topologie Packet Tracer → `assets/img/capture-packet-tracer.png`
 - [ ] Capture profil TryHackMe (rang, badges) → `assets/img/capture-tryhackme.png`
 - [x] Dépôt GitHub des scripts : [admin-toolkit](https://github.com/narcusensei/admin-toolkit) ✓ intégré
-- [ ] Rédiger les write-ups n°1 et n°2 (rooms au choix)
+- [x] 5 rooms présentées (Phishing Fundamentals, Emails in Action, Alert Triage, Alert Reporting, SOC Simulator) ✓
 - [ ] Ajouter les liens Credly des certifications si disponibles
