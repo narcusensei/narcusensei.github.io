@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="stylesheet" href="../assets/css/style.css?v=3">
 </head>
 <body>
 
@@ -110,7 +110,7 @@
             <!-- VLAN 10 -->
             <rect x="80" y="260" width="130" height="150" rx="10" fill="#0d1526" stroke="#3b82f6" stroke-width="1.2"/>
             <text x="145" y="288" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" font-weight="700" fill="#67e8f9">VLAN 10</text>
-            <text x="145" y="308" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12.5" fill="#8b9bb4">Administration</text>
+            <text x="145" y="308" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12.5" fill="#8b9bb4">Administration</text><text x="145" y="322" text-anchor="middle" font-family="Consolas, monospace" font-size="10.5" fill="#67e8f9">192.168.10.0/24</text>
             <g>
               <rect x="100" y="326" width="42" height="30" rx="5" fill="#101a30" stroke="#33455f" stroke-width="1.2"/>
               <rect x="148" y="326" width="42" height="30" rx="5" fill="#101a30" stroke="#33455f" stroke-width="1.2"/>
@@ -122,7 +122,7 @@
             <!-- VLAN 20 -->
             <rect x="230" y="260" width="130" height="150" rx="10" fill="#0d1526" stroke="#3b82f6" stroke-width="1.2"/>
             <text x="295" y="288" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" font-weight="700" fill="#67e8f9">VLAN 20</text>
-            <text x="295" y="308" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12.5" fill="#8b9bb4">Utilisateurs</text>
+            <text x="295" y="308" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12.5" fill="#8b9bb4">Utilisateurs</text><text x="295" y="322" text-anchor="middle" font-family="Consolas, monospace" font-size="10.5" fill="#67e8f9">192.168.20.0/24</text>
             <g>
               <rect x="250" y="326" width="42" height="30" rx="5" fill="#101a30" stroke="#33455f" stroke-width="1.2"/>
               <rect x="298" y="326" width="42" height="30" rx="5" fill="#101a30" stroke="#33455f" stroke-width="1.2"/>
@@ -135,11 +135,11 @@
             <g>
               <rect x="640" y="260" width="160" height="64" rx="10" fill="#101a30" stroke="#2b3b58" stroke-width="1.4"/>
               <text x="720" y="288" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0">Serveur DHCP</text>
-              <text x="720" y="308" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11.5" fill="#8b9bb4">baux par VLAN (pools)</text>
+              <text x="720" y="308" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11.5" fill="#8b9bb4">baux par VLAN (pools)</text><text x="720" y="320" text-anchor="middle" font-family="Consolas, monospace" font-size="10.5" fill="#67e8f9">192.168.30.10</text>
 
               <rect x="640" y="346" width="160" height="64" rx="10" fill="#101a30" stroke="#2b3b58" stroke-width="1.4"/>
               <text x="720" y="374" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0">Serveur DNS</text>
-              <text x="720" y="394" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11.5" fill="#8b9bb4">résolution interne</text>
+              <text x="720" y="394" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11.5" fill="#8b9bb4">résolution interne</text><text x="720" y="406" text-anchor="middle" font-family="Consolas, monospace" font-size="10.5" fill="#67e8f9">192.168.30.11 · zone lab.local</text>
             </g>
 
             <!-- Légende -->
@@ -149,10 +149,10 @@
           <figcaption>Architecture type : segmentation VLAN, trunks 802.1Q vers le routeur, DHCP et DNS centralisés dans le VLAN serveurs.</figcaption>
         </figure>
 
-        <div class="shot">
-          <strong>Capture d'écran à ajouter</strong>
-          Topologie Packet Tracer — fichier à déposer dans <code>assets/img/capture-packet-tracer.png</code>
-        </div>
+        <figure class="figure">
+          <img src="../assets/img/capture-packet-tracer.png" alt="Topologie Packet Tracer : routeur R1 relié aux switchs SW-ACCES et SW-SERVEURS, 8 postes répartis en VLAN 10 et 20, serveurs DHCP et DNS dans le VLAN 30" loading="lazy">
+          <figcaption>La maquette sous Packet Tracer : R1 (2911), SW-ACCES et SW-SERVEURS (2960), 8 postes PC-ADMIN / PC-USER et les deux serveurs — tous les liens actifs.</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -164,16 +164,38 @@
           <li><strong>Plan d'adressage</strong> : un sous-réseau par VLAN, adressage cohérent et documenté.</li>
           <li><strong>Création des VLAN</strong> sur les switchs, affectation des ports en mode access et configuration des liens trunk 802.1Q vers le routeur.</li>
           <li><strong>Routage inter-VLAN</strong> : sous-interfaces sur le routeur pour router entre segments de façon contrôlée.</li>
-          <li><strong>DHCP</strong> : pools par VLAN, passerelle et DNS distribués automatiquement aux clients.</li>
-          <li><strong>Validation</strong> : tests <code>ping</code> et <code>ipconfig</code> — isolation intra-VLAN, communication inter-VLAN, obtention des baux DHCP, simulation de pannes pour observer le comportement.</li>
+          <li><strong>DHCP centralisé</strong> : pools par VLAN (plages .50 → .149) distribués depuis le VLAN serveurs — le routeur assure le <strong>relais DHCP</strong> (<code>ip helper-address</code>) vers les sous-interfaces des VLAN 10 et 20.</li>
+          <li><strong>Validation</strong> : tests <code>ping</code> et <code>ipconfig</code> — obtention des baux, communication inter-VLAN, résolution de noms, simulation de pannes pour observer le comportement.</li>
         </ul>
       </div>
     </section>
 
+
+    <!-- ===== Preuves de validation ===== -->
+    <section class="project-section">
+      <div class="container">
+        <h2><span class="num">04</span>Preuves de validation</h2>
+        <p>Trois captures issues des tests sur la maquette : le bail DHCP obtenu par un poste admin, puis deux pings par nom — la résolution DNS fonctionne et le TTL&nbsp;127 prouve que le paquet a traversé le routeur inter-VLAN.</p>
+        <div class="shots-grid">
+          <figure class="shot-card">
+            <img src="../assets/img/test-dhcp-admin.png" alt="PC-ADMIN-1 : configuration IP en DHCP, bail 192.168.10.10 avec passerelle obtenue automatiquement" loading="lazy">
+            <figcaption><strong>Bail DHCP — PC-ADMIN-1 (VLAN 10)</strong> : adresse, masque et passerelle reçus automatiquement du pool DHCP via le relais du routeur.</figcaption>
+          </figure>
+          <figure class="shot-card">
+            <img src="../assets/img/test-dns-dhcp.png" alt="Ping de dhcp.lab.local : résolution DNS en 192.168.30.10 puis réponses, 0% de perte" loading="lazy">
+            <figcaption><strong>ping dhcp.lab.local</strong> : le nom résout en 192.168.30.10 (zone DNS interne) et répond — 0&nbsp;% de perte.</figcaption>
+          </figure>
+          <figure class="shot-card">
+            <img src="../assets/img/test-dns.png" alt="Ping de dns.lab.local : résolution en 192.168.30.11, réponses à 1 ms, TTL 127" loading="lazy">
+            <figcaption><strong>ping dns.lab.local</strong> : résolution en 192.168.30.11 — le TTL&nbsp;127 montre le passage par le routeur (routage inter-VLAN actif).</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
     <!-- ===== Compétences ===== -->
     <section class="project-section alt">
       <div class="container">
-        <h2><span class="num">04</span>Compétences mobilisées</h2>
+        <h2><span class="num">05</span>Compétences mobilisées</h2>
         <div class="tags">
           <span>Cisco IOS</span><span>VLAN</span><span>Trunking 802.1Q</span><span>Routage</span><span>DHCP</span><span>DNS</span><span>Plan d'adressage</span><span>Résolution de problèmes</span>
         </div>
@@ -208,6 +230,6 @@
     </div>
   </footer>
 
-  <script src="../assets/js/main.js?v=2"></script>
+  <script src="../assets/js/main.js?v=3"></script>
 </body>
 </html>
