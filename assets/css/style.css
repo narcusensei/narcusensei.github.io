@@ -972,7 +972,7 @@ main section[id] { scroll-margin-top: 76px; }
 /* ---------- Statistiques TryHackMe ---------- */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
   gap: 14px;
 }
 
@@ -1035,3 +1035,220 @@ main section[id] { scroll-margin-top: 76px; }
 }
 
 .shot-card figcaption strong { color: var(--text); font-family: var(--font-mono); font-size: 12.5px; }
+
+/* ---------- Certificats : vignettes et visionneuse ---------- */
+.cert-item .cert-text { flex: 1 1 0; min-width: 0; }
+
+/* Icône alignée sur le titre : les lignes pourvues d'une vignette sont plus hautes */
+.cert-item .cert-icon { align-self: flex-start; margin-top: 2px; }
+
+.cert-view {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: zoom-in;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.cert-view:hover { color: #67e8f9; text-decoration: underline; }
+.cert-view svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+.cert-thumb {
+  flex: 0 0 176px;
+  width: 176px;
+  aspect-ratio: 842 / 595;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+  cursor: zoom-in;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.cert-thumb:hover {
+  border-color: var(--accent-border);
+  box-shadow: 0 0 22px rgba(34, 211, 238, 0.16);
+  transform: translateY(-2px);
+}
+
+.cert-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.cert-dialog {
+  width: min(1060px, 94vw, calc((94vh - 52px) * 1.4142));
+  margin: auto; /* la règle globale * { margin: 0 } écrase le centrage natif des <dialog> */
+  max-width: none;
+  max-height: 94vh;
+  padding: 0;
+  border: 1px solid var(--accent-border);
+  border-radius: var(--radius);
+  background: var(--bg-panel);
+  color: var(--text);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.7);
+  overflow: auto;
+}
+
+.cert-dialog::backdrop { background: rgba(4, 9, 20, 0.84); }
+.cert-dialog[open] { display: block; animation: dlg-in 0.18s ease-out; }
+
+@keyframes dlg-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.985); }
+  to   { opacity: 1; transform: none; }
+}
+
+.cert-dialog img { display: block; width: 100%; height: auto; }
+
+.cert-dialog .cert-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: rgba(10, 15, 30, 0.82);
+  color: var(--text);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.cert-dialog .cert-close:hover { color: var(--accent); border-color: var(--accent-border); }
+
+.cert-dialog .dlg-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 18px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  font-size: 13.5px;
+  color: var(--text-muted);
+}
+
+.cert-dialog .dlg-bar code { font-family: var(--font-mono); color: var(--accent); }
+
+.cert-dialog .dlg-links { display: inline-flex; flex-wrap: wrap; gap: 6px 18px; }
+
+/* Certificat intégré dans une page projet */
+.cert-open {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  border-radius: 8px;
+  cursor: zoom-in;
+}
+
+.cert-open img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  transition: box-shadow 0.15s ease;
+}
+
+.cert-open:hover img { box-shadow: 0 0 30px rgba(34, 211, 238, 0.18); }
+
+/* ---------- CTF : répartition et tableau des défis ---------- */
+.project-section .note { margin-top: 14px; font-size: 13.5px; color: var(--text-muted); }
+.project-section .next-link { margin-top: 18px; font-weight: 600; }
+
+.split {
+  display: flex;
+  height: 12px;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 22px;
+  background: rgba(148, 163, 184, 0.12);
+}
+
+.split .seg { display: block; height: 100%; }
+.seg-steg { background: var(--accent); }
+.seg-web { background: var(--violet); }
+.seg-crypto { background: var(--success); }
+
+.split-legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  margin-top: 14px;
+  font-size: 14px;
+}
+
+.split-legend li { display: inline-flex; align-items: center; gap: 8px; }
+/* Neutraliser les puces et le retrait hérités des listes de section */
+.project-section .split-legend li { padding-left: 0; margin-bottom: 0; }
+.project-section .split-legend li::before { content: none; }
+
+.split-legend i { display: block; width: 10px; height: 10px; border-radius: 2px; }
+
+.table-wrap { overflow-x: auto; }
+
+.solves { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 14.5px; }
+
+.solves th,
+.solves td {
+  padding: 11px 12px;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border);
+}
+
+.solves thead th {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.solves tbody tr { background: var(--bg-panel); }
+.solves tbody tr:hover { background: rgba(34, 211, 238, 0.05); }
+.solves td.name { font-weight: 600; }
+.solves .pts { text-align: right; font-family: var(--font-mono); font-weight: 600; color: var(--accent); white-space: nowrap; }
+.solves tfoot td { padding-top: 12px; font-size: 13px; color: var(--text-muted); border-bottom: none; }
+
+.cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cat i { display: block; width: 8px; height: 8px; border-radius: 2px; }
+.cat-steg i { background: var(--accent); }
+.cat-web i { background: var(--violet); }
+.cat-crypto i { background: var(--success); }
+
+@media (max-width: 640px) {
+  /* Vignette : passe sous le texte, aux côtés du millésime */
+  .cert-item .cert-thumb { order: 5; flex: 1 1 0; width: auto; min-width: 0; }
+  .cert-item .year { order: 4; }
+  .cert-item .cert-text { flex: 1 1 62%; }
+
+  /* Tableau : la catégorie passe sous le nom du défi */
+  .solves th:nth-child(2), .solves td:nth-child(2) { display: none; }
+  .solves td.name::after {
+    content: attr(data-cat);
+    display: block;
+    margin-top: 2px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+}

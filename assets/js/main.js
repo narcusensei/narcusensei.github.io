@@ -15,6 +15,28 @@ document.addEventListener("DOMContentLoaded", () => {
     el.textContent = new Date().getFullYear();
   });
 
+  // Visionneuse de certificats : tout élément [data-cert] ouvre le <dialog> du même id
+  document.querySelectorAll("[data-cert]").forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const dlg = document.getElementById(trigger.dataset.cert);
+      if (dlg && typeof dlg.showModal === "function" && !dlg.open) dlg.showModal();
+    });
+  });
+
+  document.querySelectorAll("dialog.cert-dialog").forEach((dlg) => {
+    const close = dlg.querySelector(".cert-close");
+    if (close) close.addEventListener("click", () => dlg.close());
+
+    // Clic sur le fond assombri : fermer (en ignorant les clics partis de l'intérieur)
+    dlg.addEventListener("click", (e) => {
+      const r = dlg.getBoundingClientRect();
+      const dedans =
+        e.clientX >= r.left && e.clientX <= r.right &&
+        e.clientY >= r.top && e.clientY <= r.bottom;
+      if (!dedans) dlg.close();
+    });
+  });
+
   // Terminal animé du hero
   const term = document.getElementById("term-demo");
   if (term) {
@@ -24,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
       { cmd: "whoami", out: '<span class="hl">Lénaïc Dissaké</span> — admin systèmes & réseaux' },
       { cmd: "cat formation.txt", out: 'Bachelor Cybersécurité — labellisé <span class="hl">ANSSI</span>' },
       { cmd: "systemctl status projets", out: 'vSphere (9 VM) <span class="ok">[OK]</span> · VPS Linux <span class="ok">[EN PROD]</span> · THM <span class="ok">[ACTIF]</span>' },
-      { cmd: "./recherche-alternance --start", out: '<span class="ok">✓</span> 5 projets chargés — exploration en cours…' },
+      { cmd: "./recherche-alternance --start", out: '<span class="ok">✓</span> 6 projets chargés — exploration en cours…' },
     ];
 
     const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
